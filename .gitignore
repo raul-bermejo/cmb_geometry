@@ -3,6 +3,7 @@ data/
 .DS_Store/
 literature/Creswell_thesis.pdf
 literature/Planck2018.pdf
+literature/understanding/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
