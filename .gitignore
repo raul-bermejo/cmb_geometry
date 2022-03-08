@@ -1,7 +1,8 @@
 # Manually added
 data/
 .DS_Store/
-
+literature/Creswell_thesis.pdf
+literature/Planck2018.pdf
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
