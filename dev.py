@@ -25,7 +25,7 @@ def extract_data(filepath, hdu=1):
     
     return data
 
-def find_spherical_harmonics(map_table, gp_table, ps_table,
+def find_spherical_harmonics(map_table, gp_table, ps_table, apply_mask=True,
                              stoke_param ='I_STOKES', galactic_plane='GAL040', 
                              frequency=143, NSIDE=2048):
     '''
@@ -38,17 +38,22 @@ def find_spherical_harmonics(map_table, gp_table, ps_table,
     
     # extract stoke parameter (T or I by default) and mask based on galactic plane and point source
     x = map_table[stoke_param]
-    gp_mask = gp_table[galactic_plane]
-    ps_mask = ps_table[f'F{frequency}']
-    x_masked = x*gp_mask*ps_mask
+    
+    if apply_mask:
+        gp_mask = gp_table[galactic_plane]
+        ps_mask = ps_table[f'F{frequency}']
+        x_masked = x*gp_mask*ps_mask
+    else:
+        x_masked = x
     
     # compute spherical harmonics
-    a_lm =  hp.sphtfunc.map2alm(x_masked, lmax=4000)
+    a_lm =  hp.sphtfunc.map2alm(x_masked, lmax=4000)               # lmax=4000 is a good estimate, default is #*NSIDE-1
     
     end = time.time()
     print(f'It took {end-start:.2f} s. to compute a_lm')
     
     return a_lm
+
 
 def find_power_spectrum(alm_1, alm_2,
                         M_ll, b_l, f_l=1, n_l=0, NSIDE=2048):
@@ -75,17 +80,21 @@ filenames = ['HFI_SkyMap_143_2048_R3.01_halfmission-1.fits',        # map for ha
              'Bl_T_R3.01_fullsky_143hm1x143hm2.fits',               # beam transfer function for hm2
             ]
 
+
+start1 = time.time()
 # extract data
 datalist = []
 for filename in filenames:
     data_i = extract_data('data/'+filename)
     datalist.append(data_i)
-    
+end1 = time.time()
+print(f'It took {end1-start1:.2f}s. to extract the Planck data files.')
+
 sky_hm1, sky_hm2, mask_gp, mask_ps = datalist[:4]
 beamf_hm1, beamf_hm2 = datalist[4:]
 
 # calculate spherical harmonic coefficients for pseudo cross power
-a_lm_1 = find_spherical_harmonics(sky_hm1, mask_gp, mask_ps)
-a_lm_2 = find_spherical_harmonics(sky_hm2, mask_gp, mask_ps)
+#a_lm_1 = find_spherical_harmonics(sky_hm1, mask_gp, mask_ps)
+a_lm_2 = find_spherical_harmonics(sky_hm2, mask_gp, mask_ps, apply_mask=False)
 
 print(hp.__version__)
