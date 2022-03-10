@@ -43,7 +43,7 @@ def find_spherical_harmonics(map_table, gp_table, ps_table,
     x_masked = x*gp_mask*ps_mask
     
     # compute spherical harmonics
-    a_lm =  hp.sphtfunc.map2alm(x_masked, lmax=NSIDE)
+    a_lm =  hp.sphtfunc.map2alm(x_masked, lmax=4000)
     
     end = time.time()
     print(f'It took {end-start:.2f} s. to compute a_lm')
@@ -88,3 +88,4 @@ beamf_hm1, beamf_hm2 = datalist[4:]
 a_lm_1 = find_spherical_harmonics(sky_hm1, mask_gp, mask_ps)
 a_lm_2 = find_spherical_harmonics(sky_hm2, mask_gp, mask_ps)
 
+print(hp.__version__)
