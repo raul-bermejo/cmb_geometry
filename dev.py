@@ -34,6 +34,8 @@ def find_spherical_harmonics(map_table, gp_table, ps_table,
     Fully document function once fully tested
     '''
     
+    start = time.time()
+    
     # extract stoke parameter (T or I by default) and mask based on galactic plane and point source
     x = map_table[stoke_param]
     gp_mask = gp_table[galactic_plane]
@@ -42,6 +44,9 @@ def find_spherical_harmonics(map_table, gp_table, ps_table,
     
     # compute spherical harmonics
     a_lm =  hp.sphtfunc.map2alm(x_masked, lmax=NSIDE)
+    
+    end = time.time()
+    print(f'It took {end-start:.2f} s. to compute a_lm')
     
     return a_lm
 
