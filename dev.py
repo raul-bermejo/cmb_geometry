@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 #colors = sns.color_palette("colorblind").as_hex()
 NSIDE = 2048                                                                      # given in the name of the maps, associated with angular res
-APO = 0
+APO = 2
 
 # define useful functions
 def extract_data(filepath, hdu=1):
@@ -27,7 +27,7 @@ def extract_data(filepath, hdu=1):
     return data
 
 def find_spherical_harmonics(map_table, gp_table, ps_table, apply_mask=True,
-                             stoke_param ='I_STOKES', galactic_plane='GAL099', 
+                             stoke_param ='I_STOKES', galactic_plane='GAL080', 
                              frequency=143, NSIDE=2048):
     '''
     Computes the spherical harmonics from a map,
