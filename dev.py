@@ -26,7 +26,7 @@ def extract_data(filepath, hdu=1):
     return data
 
 def find_spherical_harmonics(map_table, gp_table, ps_table, apply_mask=True,
-                             stoke_param ='I_STOKES', galactic_plane='GAL040', 
+                             stoke_param ='I_STOKES', galactic_plane='GAL020', 
                              frequency=143, NSIDE=2048):
     '''
     Computes the spherical harmonics from a map,
@@ -47,7 +47,7 @@ def find_spherical_harmonics(map_table, gp_table, ps_table, apply_mask=True,
         x_masked = x
     
     # compute spherical harmonics
-    a_lm =  hp.sphtfunc.map2alm(x_masked, lmax=4000)               # lmax=4000 is a good estimate, default is #*NSIDE-1
+    a_lm =  hp.sphtfunc.map2alm(x_masked, pol=False, lmax=4000)               # lmax=4000 is a good estimate, default is #*NSIDE-1
     
     end = time.time()
     print(f'It took {end-start:.2f} s. to compute a_lm')
@@ -94,7 +94,5 @@ sky_hm1, sky_hm2, mask_gp, mask_ps = datalist[:4]
 beamf_hm1, beamf_hm2 = datalist[4:]
 
 # calculate spherical harmonic coefficients for pseudo cross power
-#a_lm_1 = find_spherical_harmonics(sky_hm1, mask_gp, mask_ps)
-a_lm_2 = find_spherical_harmonics(sky_hm2, mask_gp, mask_ps, apply_mask=False)
-
-print(hp.__version__)
+a_lm_1 = find_spherical_harmonics(sky_hm1, mask_gp, mask_ps)
+a_lm_2 = find_spherical_harmonics(sky_hm2, mask_gp, mask_ps)
