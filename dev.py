@@ -7,7 +7,8 @@ from astropy.io import fits
 import matplotlib.pyplot as plt
 
 #colors = sns.color_palette("colorblind").as_hex()
-NSIDE = 2048                                                                      # given in the name of the maps
+NSIDE = 2048                                                                      # given in the name of the maps, associated with angular res
+APO = 2
 
 # define useful functions
 def extract_data(filepath, hdu=1):
@@ -26,7 +27,7 @@ def extract_data(filepath, hdu=1):
     return data
 
 def find_spherical_harmonics(map_table, gp_table, ps_table, apply_mask=True,
-                             stoke_param ='I_STOKES', galactic_plane='GAL060', 
+                             stoke_param ='I_STOKES', galactic_plane='GAL040', 
                              frequency=143, NSIDE=2048):
     '''
     Computes the spherical harmonics from a map,
@@ -74,7 +75,7 @@ def find_power_spectrum(alm_1, alm_2,
 # define filenames as downloaded from planck release: https://pla.esac.esa.int/#home
 filenames = ['HFI_SkyMap_143_2048_R3.01_halfmission-1.fits',        # map for half mission 1 143 GHZ
              'HFI_SkyMap_143_2048_R3.01_halfmission-2.fits',        # map for half mission 2 143 GHZ
-             'HFI_Mask_GalPlane-apo5_2048_R2.00.fits',              # galactic plane mask for APO..
+            f'HFI_Mask_GalPlane-apo{APO}_2048_R2.00.fits',          # galactic plane mask for input apodization
              'HFI_Mask_PointSrc_2048_R2.00.fits',                   # mask point source
              'Bl_T_R3.01_fullsky_143hm1x143hm1.fits',               # beam transfer function for hm1
              'Bl_T_R3.01_fullsky_143hm1x143hm2.fits',               # beam transfer function for hm2
