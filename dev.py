@@ -26,7 +26,7 @@ def extract_data(filepath, hdu=1):
     return data
 
 def find_spherical_harmonics(map_table, gp_table, ps_table, apply_mask=True,
-                             stoke_param ='I_STOKES', galactic_plane='GAL080', 
+                             stoke_param ='I_STOKES', galactic_plane='GAL060', 
                              frequency=143, NSIDE=2048):
     '''
     Computes the spherical harmonics from a map,
