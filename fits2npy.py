@@ -1,5 +1,6 @@
 import numpy as np
 from astropy.io import fits
+import time
 
 APO = 5
 NSIDE = 2048
@@ -33,10 +34,10 @@ def extract_data(filename, file_kind,
         else:
             raise SyntaxError("Invalid file_kind, must be either: ['map', 'mask_point_source', 'mask_galactic_plane' ]")
         
-        np.save(short_name+'.npy', array)
+        np.save('data/'+short_name+'.npy', array)
 
-        print('Data was extracted and saved into f{} succesfully')
-        print('='*90)
+        print(f"Data was extracted and saved into {'data/'+short_name+'.npy'} succesfully")
+        print('-'*90)
     
     return None
 
@@ -49,3 +50,13 @@ filenames = ['HFI_SkyMap_143_2048_R3.01_halfmission-1.fits',        # map for ha
              'Bl_T_R3.01_fullsky_143hm1x143hm1.fits',               # beam transfer function for hm1
              'Bl_T_R3.01_fullsky_143hm1x143hm2.fits',               # beam transfer function for hm2
             ]
+
+start = time.time()
+
+# Call function for each of the files
+extract_data(filenames[0], file_kind='map')
+extract_data(filenames[1], file_kind='map')
+
+extract_data(filenames[2], file_kind='mask_galactic_plane')
+
+extract_data(filenames[3], file_kind='mask_point_source')
