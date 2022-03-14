@@ -1,21 +1,44 @@
 import numpy as np
 from astropy.io import fits
 
+APO = 5
+NSIDE = 2048
+FREQ = 143
+COVER = 60
+
 # define useful functions
-def extract_data(filepath, file_type,
+def extract_data(filename, file_kind,
                  hdu=1):
     '''
-    Extracts input HDU from map Planck FITS file (we only need the first one)
+    Extracts useful data from FITS file and saves it as .npy file
     Document function once fully tested
     '''
     
-    with fits.open(filepath) as hdul:
-        data = hdul[hdu].data                    # hdul is a list of HDU objects
+    print(f'Extracting data from {filename}:')
+    print(f'='*80)
+    with fits.open('data/'+filename) as hdul:
+        data_table = hdul[hdu].data                    # hdul is a list of HDU objects
+        short_name = filename.split('.fits')[0]
 
-        hdul.info()                              # prints metadata about FITS file (HDUs)
+        if file_kind == 'map':
+            array = data_table['I_STOKES']
+
+        elif file_kind == 'mask_point_source':
+            array = data_table[f'F{FREQ}']
+
+        elif file_kind == 'mask_galactic_plane':
+            array = data_table[f'GAL0{COVER}']
+            short_name += f'_GAL0{COVER}_'
+        
+        else:
+            raise SyntaxError("Invalid file_kind, must be either: ['map', 'mask_point_source', 'mask_galactic_plane' ]")
+        
+        np.save(short_name+'.npy', array)
+
+        print('Data was extracted and saved into f{} succesfully')
         print('='*90)
     
-    return data
+    return None
 
 
 # define filenames as downloaded from planck release: https://pla.esac.esa.int/#home
