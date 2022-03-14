@@ -72,10 +72,10 @@ filenames = ['HFI_SkyMap_143_2048_R3.01_halfmission-1.fits',        # map for ha
 
 start = time.time()
 # Call function for each of the files
-maps2npy(filenames[0])
-maps2npy(filenames[1])
+#maps2npy(filenames[0])
+#maps2npy(filenames[1])
 
-map(filenames[2], file_kind='mask_galactic_plane')
+masks2npy(filenames[2], file_kind='mask_galactic_plane')
 masks2npy(filenames[3], file_kind='mask_point_source')
 
 masks2npy(filenames[4], file_kind='beam_mask')
