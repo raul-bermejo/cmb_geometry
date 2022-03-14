@@ -19,7 +19,7 @@ for file in filenames:
     r = read_fits('data/'+file)
     name = file.split('.fits')[0]
     export_hdf(r, 'data/'+name+'.hdf')
-    print(f'{file} was succesfully converted.')
+    print(f'{file} was succesfully converted')
 
 
 end = time.time()
