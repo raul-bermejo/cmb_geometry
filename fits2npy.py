@@ -6,11 +6,44 @@ import time
 APO = 5
 NSIDE = 2048
 FREQ = 143
-COVER = 60
+GAL_COVER = 60
+HDU = 1
+
+GALCOVER_DICT = {
+    'GAL020': 0,
+    'GAL040': 1,
+    'GAL060': 2,
+    'GAL070': 3,
+    'GAL080': 4,
+    'GAL090': 5,
+    'GAL097': 6,
+    'GAL099': 7
+}
+
+FREQ_PS_DICT = {
+    'F100': 0,
+    'F143': 1,
+    'F217': 2,
+    'F353': 3,
+    'F545': 4,
+    'F857': 5,
+} 
+
 
 # define useful functions
-def masks2npy(filename, file_kind,
-              hdu=1):
+def extract_data(filepath, hdu=1):
+    '''
+    Extracts input HDU from map Planck FITS file (we only need the first one)
+    Document function once fully tested
+    '''
+    with fits.open(filepath) as hdul:
+        hdul = fits.open(filepath)
+        data = hdul[hdu].data                                              # hdul is a list of HDU objects
+    
+    return data
+
+def fits2npy(filename, field,
+             beamfunc=False):
     '''
     Extracts useful data from FITS file and saves it as .npy file
     Document function once fully tested
@@ -18,48 +51,21 @@ def masks2npy(filename, file_kind,
     
     print(f'Extracting data from {filename}:')
     print(f'='*130)
-    with fits.open('data/'+filename) as hdul:
-        data_table = hdul[hdu].data                    # hdul is a list of HDU objects
-        short_name = filename.split('.fits')[0]
 
-        if file_kind == 'map':
-            array = data_table['I_STOKES']
-
-        elif file_kind == 'mask_point_source':
-            array = data_table[f'F{FREQ}']
-
-        elif file_kind == 'mask_galactic_plane':
-            array = data_table[f'GAL0{COVER}']
-            short_name += f'_GAL0{COVER}_'
-        
-        elif file_kind == 'beam_mask':
-            array = data_table
-        
-        else:
-            raise SyntaxError("Invalid file_kind, must be either: ['map', 'mask_point_source', 'mask_galactic_plane', beam ]")
-        
-        array = np.array(array.astype(np.float))
-        np.save('data/'+short_name+'.npy', array)
-
-        print(f"Data was extracted and saved into {'data/'+short_name+'.npy'} succesfully")
-        print('-'*100)
-    
-    return None
-
-def maps2npy(filename, hdu = 1, field=0):
-
-    print(f'Extracting data from {filename}:')
-    print(f'='*130)
-
-    array = read_map('data/'+filename, field=field, hdu=hdu, h=False)
     short_name = filename.split('.fits')[0]
 
+
+    array = read_map('data/', field=field, hdu=HDU)
+
+    array = np.array(array.astype(np.float))
     np.save('data/'+short_name+'.npy', array)
 
     print(f"Data was extracted and saved into {'data/'+short_name+'.npy'} succesfully")
     print('-'*100)
 
     return None
+
+
 
 # define filenames as downloaded from planck release: https://pla.esac.esa.int/#home
 filenames = ['HFI_SkyMap_143_2048_R3.01_halfmission-1.fits',        # map for half mission 1 143 GHZ
@@ -71,16 +77,29 @@ filenames = ['HFI_SkyMap_143_2048_R3.01_halfmission-1.fits',        # map for ha
             ]
 
 start = time.time()
-# Call function for each of the files
-#maps2npy(filenames[0])
-#maps2npy(filenames[1])
+# define filepaths
+filepath_hm1 = 'data/HFI_SkyMap_143_2048_R3.01_halfmission-1.fits'         # map for half mission 1 143 GHZ
+filepath_hm2 = 'data/HFI_SkyMap_143_2048_R3.01_halfmission-2.fits'         # map for half mission 2 143 GHZ
+filepath_gp = f'data/HFI_Mask_GalPlane-apo{APO}_2048_R2.00.fits'           # galactic plane mask for input apodization length
+filepath_ps = 'data/HFI_Mask_PointSrc_2048_R2.00.fits'                     # mask point source
+filepath_beamwin1 = 'data/Bl_T_R3.01_fullsky_143hm1x143hm1.fits'           # beam transfer function for hm1
+filepath_beamwin2 = 'data/Bl_T_R3.01_fullsky_143hm1x143hm2.fits'           # beam transfer function for hm2
+         
+start1 = time.time()
+print(f'Started Planck data extraction:')
+print('='*80)
+# extract data by using read_map funcitn from healpy
+sky_hm1, sky_hm2 = read_map(filepath_hm1, field=0, hdu=HDU), read_map(filepath_hm2, field=0, hdu=HDU)
 
-masks2npy(filenames[2], file_kind='mask_galactic_plane')
-masks2npy(filenames[3], file_kind='mask_point_source')
+field_gp = GALCOVER_DICT[f'GAL0{GAL_COVER}']
+mask_gp = read_map(filepath_gp, field=field_gp, hdu=HDU)
 
-masks2npy(filenames[4], file_kind='beam_mask')
-masks2npy(filenames[5], file_kind='beam_mask')
+field_ps = FREQ_PS_DICT['F143']
+mask_ps = read_map(filepath_ps, field=field_ps, hdu=HDU)
+
+# use the extract_data function to find the beam window function
+beam_hm1, beam_hm2 = extract_data(filepath_beamwin1), extract_data(filepath_beamwin2)
 
 end = time.time()
 print(f'='*130)
-print(f'All files were loaded and saved succesfully in {end-start:.2f}')
+print(f'All files were loaded and saved succesfully in {end-start:.2f} s.')
