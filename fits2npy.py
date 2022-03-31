@@ -55,7 +55,7 @@ def fits2npy(filename,
     short_name = filename.split('.fits')[0]
 
     if beamfunc:
-        array = extract_data(filename)
+        array = extract_data('data/'+filename)
     else:
         array = read_map('data/'+filename, field=field, hdu=HDU)
 
@@ -67,17 +67,8 @@ def fits2npy(filename,
 
     return None
 
-# define filenames as downloaded from planck release: https://pla.esac.esa.int/#home
-filenames = ['HFI_SkyMap_143_2048_R3.01_halfmission-1.fits',        # map for half mission 1 143 GHZ
-             'HFI_SkyMap_143_2048_R3.01_halfmission-2.fits',        # map for half mission 2 143 GHZ
-            f'HFI_Mask_GalPlane-apo{APO}_2048_R2.00.fits',          # galactic plane mask for input apodization length
-             'HFI_Mask_PointSrc_2048_R2.00.fits',                   # mask point source
-             'Bl_T_R3.01_fullsky_143hm1x143hm1.fits',               # beam transfer function for hm1
-             'Bl_T_R3.01_fullsky_143hm1x143hm2.fits',               # beam transfer function for hm2
-            ]
-
 start = time.time()
-# define filepaths
+# define filenames as downloaded from planck release: https://pla.esac.esa.int/#home
 filepath_hm1 = 'HFI_SkyMap_143_2048_R3.01_halfmission-1.fits'         # map for half mission 1 143 GHZ
 filepath_hm2 = 'HFI_SkyMap_143_2048_R3.01_halfmission-2.fits'         # map for half mission 2 143 GHZ
 filepath_gp = f'HFI_Mask_GalPlane-apo{APO}_2048_R2.00.fits'           # galactic plane mask for input apodization length
