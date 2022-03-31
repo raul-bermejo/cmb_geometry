@@ -1,6 +1,7 @@
 # Manually added
 plots/
 data/
+data_test/
 meetings/
 Planck2018_PowerSpectrum.pdf
 .DS_Store/
