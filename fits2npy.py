@@ -82,10 +82,10 @@ print('='*80)
 # extract data by using read_map funcitn from healpy
 sky_hm1, sky_hm2 = fits2npy(filepath_hm1, field=0, hdu=HDU), fits2npy(filepath_hm2, field=0, hdu=HDU)
 
-#field_gp = GALCOVER_DICT[f'GAL0{GAL_COVER}']
+field_gp = GALCOVER_DICT[f'GAL0{GAL_COVER}']
 mask_gp = fits2npy(filepath_gp, field=field_gp, hdu=HDU)
 
-#field_ps = FREQ_PS_DICT['F143']
+field_ps = FREQ_PS_DICT['F143']
 mask_ps = fits2npy(filepath_ps, field=field_ps, hdu=HDU)
 
 # use the extract_data function to find the beam window function
