@@ -11,7 +11,7 @@
 \usepackage{array,booktabs,tabularx}
 
 \newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
-\sisetup{per=frac,fraction=sfrac}
+%\sisetup{per=frac,fraction=sfrac}
 
 \title{\huge Measuring the Geometry of the Universe with the Planck Satellite}
 \author{Raul Bermejo$^{1}$}
@@ -25,100 +25,39 @@
 \begin{document}
 \begin{frame}
 \begin{columns}
-	\begin{column}{.43\textwidth}
+	\begin{column}{.54\textwidth}
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth}  % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
-					\begin{myblock}{Introduction}
-						Nullam pulvinar nulla quis felis posuere condimentum. Fusce purus nunc, efficitur nec varius quis, lacinia et lorem. Etiam non sem felis. Etiam imperdiet semper arcu, sodales facilisis dui volutpat quis. Quisque rutrum varius risus, a posuere mi volutpat quis. Aenean ac eros nec neque lacinia luctus ac at erat. Donec ut nisi eget nulla dapibus faucibus.
-						\vspace{0.4em}
-						\begin{figure}
-							\begin{minipage}{0.43\textwidth}
-								\centering\includegraphics[width=0.85\textwidth]{img/mas.png}
-								\caption{Lorem ipsum dolor sit amet \cite{Paivi}}
-							\end{minipage}
-							\hspace{1em}
-						\end{figure}
-					
-					Ut dapibus est non condimentum laoreet. Curabitur mollis leo diam, nec sagittis lorem bibendum a. Curabitur efficitur ante consequat euismod imperdiet. Nam arcu lacus, luctus non porttitor at, eleifend sit amet leo. Phasellus volutpat, nibh nec porta volutpat, nisl sem cursus sapien, non molestie nisl ipsum et enim.
+					\begin{myblock}{Introduction}	\input{poster_labyCMB/content/introduction}
+				
 						
 					\end{myblock}\vfill
 					
 					
-					\begin{myblock}{Methods}
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porta ornare ligula, at accumsan elit commodo et. Curabitur sagittis risus augue, eleifend porta nunc hendrerit vitae. Ut ipsum nisl, finibus in euismod id, ullamcorper vel lorem. Proin ut velit ut orci sagittis dapibus sed ac lectus. Vestibulum at vulputate lectus. Etiam fermentum mi ex, quis bibendum ex euismod laoreet. Quisque nunc augue, porta quis efficitur vel, porttitor eget tellus ~\ref{fig:tt}.
-						\vspace{0.5em}
-						\begin{figure}
-							\begin{minipage}{0.94\textwidth}
-								\centering\includegraphics[width=0.9\textwidth]{img/dm.png}
-								\caption{Ut ipsum nisl.}
-								\label{fig:stim}
-							\end{minipage}
-						\end{figure}
-						
-						\begin{itemize}
-						
-							\item filter 1 (as seen in figure~\ref{fig:stim}).
-							
-						 	\item filter 2 (as seen in figure~\ref{fig:stim}).
-						 	
-						 	\item filter 3 (as seen in figure~\ref{fig:stim}).
-						 	
-						\end{itemize}
-						\vspace{0.5em}
-						\begin{figure}
-							\begin{minipage}{0.94\textwidth}
-								\centering\includegraphics[width=0.9\textwidth]{img/tt.png}
-								\caption{quis bibendum ex euismod laoreet}
-								\label{fig:tt}
-							\end{minipage}
-						\end{figure}
+					\begin{myblock}{Dataset}
+					\input{poster_labyCMB/content/dataset}
 					\end{myblock}\vfill
 		}\end{minipage}\end{beamercolorbox}
 	\end{column}
 	
 	
-	\begin{column}{.57\textwidth}
+	\begin{column}{.46\textwidth}
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth} % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
+					\begin{myblock}{Methods}
+					
+					\input{poster_labyCMB/content/methods}
+					\end{myblock}\vfill
+					
+					
 					\begin{myblock}{Results}
-						Integer id magna sit amet ipsum cursus ornare. Praesent sed pulvinar mi. Aenean condimentum pretium tempor. Morbi lectus magna, aliquet eget ex quis, facilisis condimentum velit. Aliquam et scelerisque tellus. Cras at sollicitudin leo, sed gravida ligula. Aliquam semper facilisis dui, et gravida libero. 
-						\vspace{0.2em}
-						\begin{figure}
-							\begin{minipage}{.94\textwidth}
-								\centering\includegraphics[width=\textwidth]{img/og.png}
-								\caption{\textbf{(a)}  Aliquam semper facilisis dui, et gravida libero}
-							\end{minipage}
-						\end{figure}
-						\vspace{0.4em}
-						Nullam pulvinar nulla quis felis posuere condimentum. Fusce purus nunc, efficitur nec varius quis, lacinia et lorem. Etiam non sem felis. Etiam imperdiet semper arcu, sodales facilisis dui volutpat quis. Quisque rutrum varius risus, a posuere mi volutpat quis. Aenean ac eros nec neque lacinia luctus ac at erat. Donec ut nisi eget nulla dapibus faucibus. Ut dapibus est non condimentum laoreet. 
-
-						\vspace{0.5em}
-						\begin{figure}
-							\begin{minipage}{0.43\textwidth}
-								\centering\includegraphics[width=0.6\textwidth]{img/ng_large.png}
-								\caption{Ut dapibus est non condimentum laoreet.}
-							\end{minipage}
-							\hspace{1em}
-							\begin{minipage}{0.45\textwidth}
-								\centering\includegraphics[width=0.34\textwidth]{img/db.png}
-								\caption{Nullam pulvinar nulla quis felis posuere condimentum.}
-							\end{minipage}
-						\end{figure}
+					\input{poster_labyCMB/content/results}
 					\end{myblock}\vfill
 					
 					
-					\begin{myblock}{Discussion (?)}
-						Nunc cursus, nulla in ultrices finibus, velit augue pulvinar sapien, vel suscipit lorem quam vel erat. Suspendisse interdum mauris sed consectetur auctor. Cras placerat purus at mauris blandit, quis cursus massa facilisis. Praesent et leo blandit, rutrum libero sed, tristique neque. Maecenas sagittis neque sapien, ac hendrerit sapien gravida quis. Nulla nibh justo, euismod in erat ac, efficitur sagittis tellus. Aenean vel ultricies purus.
-						\begin{figure}
-							\begin{minipage}{0.85\textwidth}
-								\centering\includegraphics[width=0.75\textwidth]{img/fail.png}
-								\caption{Aenean vel ultricies purus.}
-								\label{fig:fail}
-							\end{minipage}
-						\end{figure}
-					\end{myblock}\vfill
+					
 					\begin{myblock}{References}
 						\footnotesize
 						\bibliographystyle{abbrv}
