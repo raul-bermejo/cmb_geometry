@@ -1,15 +1,31 @@
-To study the statistical structure of the CMB signal, the cross power spectrum of the sky map is computed. An unbiased estimator is given by [reference Efst?]:
+We infer the geometrical signal from the Planck data by studying the fluctuations in temperature $\Delta T$ in the sky maps. These fluctuations in the signal can be measured by the so-called \textit{cross power spectrum} $C_{\ell}$. An unbiased estimator for $C_{\ell}$ \cite{tristram:2005} is given by 
 
-$ insert Cl formula,$
-where $a_lm$ corresponds to the Fourier coefficients of the sky's spherical harmonics decomposition:
-$ insert alm formula $ 
+\begin{equation}
+\widehat{C_{\ell}}=\sum_{m=-\ell}^{\ell} \frac{\left|a_{\ell m}\right|^{2}}{2 \ell+1},
+\end{equation}
+\vspace{1em}
+
+where $\ell$ corresponds to the multipole (associated with an angular size) and $a_{\ell}$ corresponds to the Fourier coefficients of the spherical harmonic decomposition of $\Delta T$:
+\begin{equation}
+a_{\ell m}=\int \Delta T(\hat{n}) Y_{\ell m}(\hat{n}) d \Omega.
+\end{equation}
+\vspace{1em}
+
+We compute $C_{\ell}$ using the open-source Python package \textsc{healpy} (\cite{healpy:2019}; \cite{healpix:2005}). Next, to reduce the correlations and errors in $C_{\ell}$ induced by the cut sky, we bin the cross power spectrum. Following \cite{hivon:2002}, we choose the 'flattened spectrum' as our binning such that $C_{\ell} \equiv \ell(\ell+1) C_{\ell} / 2 \pi$.
+
 
 \vspace{0.2em}
 \begin{figure}
 	\begin{minipage}{.94\textwidth}
-		\centering\includegraphics[width=\textwidth]{img/og.png}
-		\caption{\textbf{(a)}  Aliquam semper facilisis dui, et gravida libero}
+		\centering\includegraphics[width=.75\textwidth]{poster_labyCMB/img/BoltzCode_Cls.png}
+		\caption{Cross power spectra for simulated Universes with different curvature density parameters $\Omega_k$.}
+		\label{fig: boltz_Cls}
 	\end{minipage}
 \end{figure}
 \vspace{0.4em}
-Nullam pulvinar nulla quis felis posuere condimentum. Fusce purus nunc, efficitur nec varius quis, lacinia et lorem. Etiam non sem felis. Etiam imperdiet semper arcu, sodales facilisis dui volutpat quis. Quisque rutrum varius risus, a posuere mi volutpat quis. Aenean ac eros nec neque lacinia luctus ac at erat. Donec ut nisi eget nulla dapibus faucibus. Ut dapibus est non condimentum laoreet. 
+
+
+The first peak of $C_l$ encodes the information about $\Omega_k$ [add reference!]. From figure \ref{fig: boltz_Cls}, one can see that different values of $\Omega_k$ shift the value of $\ell_{peak}$.
+
+Thus to infer $\Omega_k$, we fit the value $\ell_{peak}$ from the Planck signal to that of the simulated Universes
+we infer the computed $\C_{\ell}$ from the Planck sky map to that of a set of simulated Universes (computed using the Python package \textsc{CAMB} \cite{camb:2011}).

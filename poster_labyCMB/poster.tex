@@ -9,6 +9,8 @@
 \usepackage{ragged2e}
 \usepackage[font=scriptsize,justification=justified]{caption}
 \usepackage{array,booktabs,tabularx}
+\usepackage{caption}
+
 
 \newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
 %\sisetup{per=frac,fraction=sfrac}
@@ -35,7 +37,7 @@
 					\end{myblock}\vfill
 					
 					
-					\begin{myblock}{Dataset}
+					\begin{myblock}{Planck Dataset}
 					\input{poster_labyCMB/content/dataset}
 					\end{myblock}\vfill
 		}\end{minipage}\end{beamercolorbox}
@@ -46,7 +48,7 @@
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth} % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
-					\begin{myblock}{Methods}
+					\begin{myblock}{Cross Power Spectrum}
 					
 					\input{poster_labyCMB/content/methods}
 					\end{myblock}\vfill
@@ -61,7 +63,7 @@
 					\begin{myblock}{References}
 						\footnotesize
 						\bibliographystyle{abbrv}
-						\bibliography{./bib}
+						\bibliography{references.bib}
 					\end{myblock}\vfill
 		}\end{minipage}\end{beamercolorbox}
 	\end{column}
