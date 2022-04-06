@@ -6,7 +6,7 @@ import time
 APO = 5
 NSIDE = 2048
 FREQ = 143
-GAL_COVER = 40
+GAL_COVER = 90
 HDU = 1 
 
 GALCOVER_DICT = {
@@ -50,7 +50,7 @@ def fits2npy(filename,
     '''
     
     print(f'Extracting data from {filename}:')
-    print(f'='*130)
+    print(f'-'*130)
 
     short_name = filename.split('.fits')[0]
 
@@ -100,5 +100,8 @@ if beamfunc2npy:
     beam_hm1, beam_hm2 = fits2npy(filepath_beamwin1, field=None, beamfunc=True), fits2npy(filepath_beamwin2, field=None, beamfunc=True)
 
 end = time.time()
-print(f'='*130)
-print(f'File(s) were loaded and saved succesfully in {end-start:.2f} s.')
+if (~skies2npy and ~gp2npy and ~ps2npy and ~beamfunc2npy):
+    print('None of the files were converted for conversion from .fits to .npy')
+else:
+    print(f'='*130)
+    print(f'File(s) were loaded and saved succesfully in {end-start:.2f} s.')
