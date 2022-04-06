@@ -100,8 +100,8 @@ if beamfunc2npy:
     beam_hm1, beam_hm2 = fits2npy(filepath_beamwin1, field=None, beamfunc=True), fits2npy(filepath_beamwin2, field=None, beamfunc=True)
 
 end = time.time()
-if (~skies2npy and ~gp2npy and ~ps2npy and ~beamfunc2npy):
-    print('None of the files were converted for conversion from .fits to .npy')
-else:
+if (skies2npy or gp2npy or ps2npy or beamfunc2npy):
     print(f'='*130)
     print(f'File(s) were loaded and saved succesfully in {end-start:.2f} s.')
+else:
+    print('None of the files were converted for conversion from .fits to .npy')
