@@ -1,24 +1,25 @@
 \begin{figure}
-	\begin{minipage}{0.95\textwidth}
+	\begin{minipage}{0.65\textwidth}
 		\centering\includegraphics[width=0.85\textwidth]{poster_labyCMB/img/Planck_Cl_143x143__60perc.png}
-		\caption{Computed cross-power spectrum from the Planck satellite.}
+		\caption{Fit for the cross-power spectrum from the Planck satellite CMB maps.}
 		\label{fig:planck_cls}
 	\end{minipage}
 \end{figure}
 
-As we are only interested in the first peak of the cross power spectrum, we fitted the computed $C_{\ell}$ for the Planck data using the following model:
+Since to infer $\Omega_k$ we only need to be concerned with the first peak of the cross power spectrum to infer , we fitted the computed $C_{\ell}$ for the Planck data using the following model:
 
 \begin{equation}
     C_{\ell} = a(\ell-\ell_{peak})^2 + b,
 \end{equation}
 
-where $a, \ell_{peak}$ and $b$ are model parameters. Figure \ref{fig:planck_cl} shows the fit for the model, with a multipole value of $\ell_{peak} = 211.14 \pm 1.10$.
+where $a, \ell_{peak}$ and $b$ are model parameters. Figure ~\ref{fig:planck_cls} shows the fit for the model, with a multipole value of $\ell_{peak} = 211.14 \pm 1.10$.
 
 Finally, using the curves in figure \ref{fig: boltz_Cls} and our estimated $\ell_{peak}$, we performed a one-dimensional fit to find an estimate of $\Omega_k$. Our estimate of the curvature density parameter as measured by the Planck satellite data corresponds to 
 
 \begin{equation*}
     \Omega_k = -0.028 \pm 0.012.
 \end{equation*}
+\vspace{0.5em}
 
 This result is within a $2\sigma$ accordance with respect to literature values from the Planck 2018 release \cite{planck:2018_main}, thus suggesting a flat geometry for our Universe. 
 

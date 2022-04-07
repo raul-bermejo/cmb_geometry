@@ -1,34 +1,30 @@
-The Planck satellite sky maps used for this study are publicly available at \href{http://pla.esac.esa.int/pla/#maps}{ESA's Planck mission website}. We used two half-mission single-frequency maps of 143 $GHz$.
+The Planck satellite was launched by the European Space Agency (ESA) in May 2019. Its goal is to measure the temperature fluctuations of the CMB across the sky. Although the CMB signal appear to be homogeneous with a radiation temperature of $T = 2.73 \ K$, it features anisotropic fluctuations of order of $\Delta T \~ 10^{-5} \ K$. Thus, the Planck satellite was equipped to measure this anisotropy to an unprecedented precision.
+\vspace{1em} 
 
-\vspace{0.5em}
+The Planck temperature sky maps used for this study are publicly available at the \MYhref{http://pla.esac.esa.int/pla/#maps}{ESA Planck mission website}. We used two half-mission single-frequency maps of $\nu = 143$ GHz.
+
+\vspace{2cm}
 \begin{figure}
-	\begin{minipage}{0.3\textwidth}
-		\centering\includegraphics[width=1.1\textwidth]{poster_labyCMB/img/planck_sky0.png}
-	\end{minipage}
-	\hspace{1em}
-	\begin{minipage}{0.3\textwidth}
-	    \captionsetup{width=2\textwidth}
-		\centering\includegraphics[width=1\textwidth]{poster_labyCMB/img/planck_sky1.png}
-		\hspace{14em}\caption{Different geometries that the universe can take. From left to right: positively curved (closed $k=1$), no curvature (flat $k=0$) and negatively curved (open $k=-1$).}
-		\label{fig:geometries}
-	\end{minipage}
-	\hspace{1em}
-	\begin{minipage}{0.3\textwidth} 
-		\centering\includegraphics[width=1\textwidth]{poster_labyCMB/img/planck_sky2.png}
-	\end{minipage}
+\subfloat a){\includegraphics[width =.33\textwidth]{poster_labyCMB/img/planck_sky0.png}} \hspace{2cm}
+\subfloat b){\includegraphics[width =.33\textwidth]{poster_labyCMB/img/planck_sky1.png}}\\ \vspace{2cm}
+\subfloat c){\includegraphics[width =.33\textwidth]{poster_labyCMB/img/planck_sky2.png}}
+\caption{CMB maps from the Planck satellite before and after applying masks. From the top left: a) map with no mask, b) map with point-source mask, c) map with galactic plane and point-source mask.}
+\label{fig: cmb_maps}
 \end{figure}
+\vspace{1cm}
 
-To reduce the signal-to-noise ratio, we applied two masks to each of the sky maps:
+As shown in \ref{fig: cmb_maps} a), the CMB maps contain unwanted noise around the center of the ellipse due to galactic HI emission and noise due to the instrument. Thus, we applied two masks to each of the sky maps:
+\vspace{1cm}
+\begin{itemize}
 
-\begin{enumerate}
-
-	\item A mask with a galactic cover of $f_{sky} = 60 \%$ to reduce the noise due to HI galactic emission.
+	\item A mask with a galactic cover of $f_{sky} = 80 \%$ to reduce the noise due to HI galactic emission.
 	
- 	\item A point source mask to reduce the noise due to the satellite instrument.
+ 	\item A point source mask to reduce the noise due to the Planck satellite instrument.
  	
-\end{enumerate}
+\end{itemize}
+\vspace{1cm}
 
-Figure ~\ref{fig: cmb_maps} shows an example of the effect the masks have on one of the sky maps. The last map in ~\ref{fig: cmb_maps} shows a less populated signal than the original one. After applying both of these masks to each sky map, the datasets were ready for the statistical analysis.
+Figure ~\ref{fig: cmb_maps} shows an example of the effect the masks have on one of the sky maps. The last map in ~\ref{fig: cmb_maps} shows a less polluted signal than the original one. After applying both of these masks to each sky map, we proceeded with the statistical analysis for statistical analysis.
 
 
 

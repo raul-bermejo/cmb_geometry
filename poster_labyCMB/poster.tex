@@ -1,16 +1,20 @@
 \documentclass{beamer}
-\usepackage[orientation=portrait,size=a0,scale=1.05,debug]{beamerposter}
+\usepackage[orientation=portrait,size=a0,scale=1,debug]{beamerposter}
 \mode<presentation>{\usetheme{ZH}}
 \usepackage[lining]{sourcesanspro}
 \usepackage{chemformula}
 \usepackage[utf8]{inputenc}
 \usepackage[german, english]{babel} % required for rendering German special characters
 \usepackage{siunitx} %pretty measurement unit rendering
-\usepackage{hyperref} %enable hyperlink for urls
 \usepackage{ragged2e}
 \usepackage[font=sourcesanspro,justification=justified]{caption}
 \usepackage{array,booktabs,tabularx}
 \usepackage{caption}
+
+\usepackage{xcolor}
+\usepackage[colorlinks = true, urlcolor  = blue]{hyperref}
+
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
 
 
 \newcolumntype{Z}{>{\centering\arraybackslash}X} % centered tabularx columns
@@ -28,7 +32,7 @@
 \begin{document}
 \begin{frame}
 \begin{columns}
-	\begin{column}{.51\textwidth}
+	\begin{column}{.4\textwidth}
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth}  % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
@@ -45,7 +49,7 @@
 	\end{column}
 	
 	
-	\begin{column}{.49\textwidth}
+	\begin{column}{.6\textwidth}
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth} % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
@@ -64,7 +68,7 @@
 					\begin{myblock}{References}
 						\footnotesize
 						\bibliographystyle{abbrv}
-						\bibliography{references.bib}
+						\bibliography{references}
 					\end{myblock}\vfill
 		}\end{minipage}\end{beamercolorbox}
 	\end{column}
