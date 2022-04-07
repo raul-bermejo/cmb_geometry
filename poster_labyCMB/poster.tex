@@ -1,13 +1,14 @@
 \documentclass{beamer}
-\usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
+\usepackage[orientation=portrait,size=a0,scale=1.05,debug]{beamerposter}
 \mode<presentation>{\usetheme{ZH}}
+\usepackage[lining]{sourcesanspro}
 \usepackage{chemformula}
 \usepackage[utf8]{inputenc}
 \usepackage[german, english]{babel} % required for rendering German special characters
 \usepackage{siunitx} %pretty measurement unit rendering
 \usepackage{hyperref} %enable hyperlink for urls
 \usepackage{ragged2e}
-\usepackage[font=scriptsize,justification=justified]{caption}
+\usepackage[font=sourcesanspro,justification=justified]{caption}
 \usepackage{array,booktabs,tabularx}
 \usepackage{caption}
 
@@ -27,7 +28,7 @@
 \begin{document}
 \begin{frame}
 \begin{columns}
-	\begin{column}{.54\textwidth}
+	\begin{column}{.51\textwidth}
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth}  % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously
@@ -44,7 +45,7 @@
 	\end{column}
 	
 	
-	\begin{column}{.46\textwidth}
+	\begin{column}{.49\textwidth}
 		\begin{beamercolorbox}[center]{postercolumn}
 			\begin{minipage}{.98\textwidth} % tweaks the width, makes a new \textwidth
 				\parbox[t][\columnheight]{\textwidth}{ % must be some better way to set the the height, width and textwidth simultaneously

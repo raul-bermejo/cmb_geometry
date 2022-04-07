@@ -1,20 +1,34 @@
-We study Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porta ornare ligula, at accumsan elit commodo et. Curabitur sagittis risus augue, eleifend porta nunc hendrerit vitae. Ut ipsum nisl, finibus in euismod id, ullamcorper vel lorem. Proin ut velit ut orci sagittis dapibus sed ac lectus. Vestibulum at vulputate lectus. Etiam fermentum mi ex, quis bibendum ex euismod laoreet. Quisque nunc augue, porta quis efficitur vel, porttitor eget tellus.
+The Planck satellite sky maps used for this study are publicly available at \href{http://pla.esac.esa.int/pla/#maps}{ESA's Planck mission website}. We used two half-mission single-frequency maps of 143 $GHz$.
 
 \vspace{0.5em}
 \begin{figure}
-	\begin{minipage}{0.94\textwidth}
-		\centering\includegraphics[width=0.9\textwidth]{poster_labyCMB/img/PlanckCMB_commander.png}
-		\caption{Ut ipsum nisl.}
-		\label{fig:stim}
+	\begin{minipage}{0.3\textwidth}
+		\centering\includegraphics[width=1.1\textwidth]{poster_labyCMB/img/planck_sky0.png}
+	\end{minipage}
+	\hspace{1em}
+	\begin{minipage}{0.3\textwidth}
+	    \captionsetup{width=2\textwidth}
+		\centering\includegraphics[width=1\textwidth]{poster_labyCMB/img/planck_sky1.png}
+		\hspace{14em}\caption{Different geometries that the universe can take. From left to right: positively curved (closed $k=1$), no curvature (flat $k=0$) and negatively curved (open $k=-1$).}
+		\label{fig:geometries}
+	\end{minipage}
+	\hspace{1em}
+	\begin{minipage}{0.3\textwidth} 
+		\centering\includegraphics[width=1\textwidth]{poster_labyCMB/img/planck_sky2.png}
 	\end{minipage}
 \end{figure}
 
-\begin{itemize}
+To reduce the signal-to-noise ratio, we applied two masks to each of the sky maps:
 
-	\item filter 1 (as seen in figure~\ref{fig:stim}).
+\begin{enumerate}
+
+	\item A mask with a galactic cover of $f_{sky} = 60 \%$ to reduce the noise due to HI galactic emission.
 	
- 	\item filter 2 (as seen in figure~\ref{fig:stim}).
+ 	\item A point source mask to reduce the noise due to the satellite instrument.
  	
- 	\item filter 3 (as seen in figure~\ref{fig:stim}).
- 	
-\end{itemize}
+\end{enumerate}
+
+Figure ~\ref{fig: cmb_maps} shows an example of the effect the masks have on one of the sky maps. The last map in ~\ref{fig: cmb_maps} shows a less populated signal than the original one. After applying both of these masks to each sky map, the datasets were ready for the statistical analysis.
+
+
+
