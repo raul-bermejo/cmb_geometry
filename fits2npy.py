@@ -6,7 +6,7 @@ import time
 APO = 5
 NSIDE = 2048
 FREQ = 143
-GAL_COVER = 90
+GAL_COVER = 80
 HDU = 1 
 
 GALCOVER_DICT = {
@@ -43,14 +43,14 @@ def extract_data(filepath, hdu=1):
     return data
 
 def fits2npy(filename, 
-            field, hdu=1, beamfunc=False):
+            field, hdu=1, gp=False, beamfunc=False):
     '''
     Extracts useful data from FITS file and saves it as .npy file
     Document function once fully tested
     '''
     
     print(f'Extracting data from {filename}:')
-    print(f'-'*130)
+    print('-'*75)
 
     short_name = filename.split('.fits')[0]
 
@@ -60,10 +60,16 @@ def fits2npy(filename,
         array = read_map('data/'+filename, field=field, hdu=HDU)
 
     array = np.array(array.astype(np.float64))
-    np.save('data_test/'+short_name+'.npy', array)
 
-    print(f"Data was extracted and saved into {'data/'+short_name+'.npy'} succesfully")
-    print('-'*100)
+    if gp:
+        output_name = 'data_test/'+short_name+f'_fsky={GAL_COVER/100}.npy'
+
+    else:
+        output_name = 'data_test/'+short_name+'.npy'
+
+    np.save(output_name, array)
+    print(f"Data was extracted and saved into {output_name} succesfully")
+    print('-'*70)
 
     return None
 
@@ -85,9 +91,9 @@ if skies2npy:
     sky_hm1, sky_hm2 = fits2npy(filepath_hm1, field=0, hdu=HDU), fits2npy(filepath_hm2, field=0, hdu=HDU)
 
 field_gp = GALCOVER_DICT[f'GAL0{GAL_COVER}']
-gp2npy = True
+gp2npy = False
 if gp2npy:
-    mask_gp = fits2npy(filepath_gp, field=field_gp, hdu=HDU)
+    mask_gp = fits2npy(filepath_gp, field=field_gp, hdu=HDU, gp=True)
 
 field_ps = FREQ_PS_DICT['F143']
 ps2npy = False
@@ -101,7 +107,7 @@ if beamfunc2npy:
 
 end = time.time()
 if (skies2npy or gp2npy or ps2npy or beamfunc2npy):
-    print(f'='*130)
+    print(f'='*80)
     print(f'File(s) were loaded and saved succesfully in {end-start:.2f} s.')
 else:
-    print('None of the files were converted for conversion from .fits to .npy')
+    print('No files were selected for conversion from .fits to .npy')
