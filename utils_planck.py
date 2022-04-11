@@ -7,13 +7,10 @@ import healpy as hp
 import seaborn as sns
 from astropy.io import fits
 import matplotlib.pyplot as plt
-from jupyterthemes import jtplot
 from healpy.fitsfunc import read_map
 import matplotlib.style as style
 #import camb
 #from camb import model, initialpower
-from scipy.optimize import curve_fit
-from pylab import cm
 
 
 style.use('tableau-colorblind10')
@@ -43,6 +40,7 @@ FREQ_PS_DICT = {
     'F857': 5,
 } 
 
+# define utils functions
 def extract_data(filepath, hdu=1):
     '''
     Extracts input HDU from map Planck FITS file (we only need the first one)
