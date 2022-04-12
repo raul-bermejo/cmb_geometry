@@ -9,8 +9,8 @@ from astropy.io import fits
 import matplotlib.pyplot as plt
 from healpy.fitsfunc import read_map
 import matplotlib.style as style
-#import camb
-#from camb import model, initialpower
+import camb
+from camb import model, initialpower
 
 
 style.use('tableau-colorblind10')
@@ -176,7 +176,8 @@ def model_cl(l, a_0, a_2, l_p):
 
 def boltzmann_cl(omega_bary, omega_cdm, omega_k, H_0=67.5):
     '''
-    Document once fully tested
+    Finds the cross power spectrum for a Boltzmann code given
+    input density parameters
     '''
     # Initialize parameters of CAMB model
     pars = camb.CAMBparams()
