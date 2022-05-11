@@ -30,7 +30,7 @@ Finally, run `planck_analysis.ipynb` to produce the anisotropy results. Plots wi
 
 ## Contributions
  
- Pull requests are welcome. Please ensure that the pipeline `planck_analysis.ipynb` without errors.
+ Pull requests are welcome. Please ensure that the analysis pipeline `planck_analysis.ipynb` runs without errors.
  
 ## Acknowledgements
 
